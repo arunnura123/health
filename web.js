@@ -13,7 +13,13 @@ app.use(app.router);
   
 });
 
-app.post('/', function (request, response) {
+
+http.createServer(app).listen(app.get('port'), function() {
+    counter+=1;
+      console.log("Listening on " + app.get('port'));
+  });
+
+app.get('/', function (request, response) {
  var bdata = fs.readFileSync('index.html').toString();
  response.send(bdata);
 });

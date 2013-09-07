@@ -5,7 +5,7 @@ var  express = require('express')
   , https = require('https')
 var port=process.env.PORT || 3000;
 var counter=0;
-var app = express();
+var app1 = express();
 
 var app=http.createServer(function(req,res){
     res.write("server listening to port:"+port);
@@ -20,7 +20,7 @@ io.configure(function () {
 });
 
 // routing
-app.get('/', function (req, res) {
+app1.get('/', function (req, res) {
   res.sendfile(__dirname + '/index.html');
 });
 

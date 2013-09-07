@@ -18,7 +18,6 @@ app.get("/", function (req, res) {
 });
 
 io.sockets.on("connection", function (socket) {
-    var bdata;
     socket.emit("from server", { message: "Welcome to Arun's Chat Room!" });
     sendAll({online: Object.keys(socket.manager.open).length});
     bdata="BOT : ";
@@ -26,7 +25,7 @@ io.sockets.on("connection", function (socket) {
     console.log("received: ", data, " from ", socket.store.id);
     
     if (data.message)
-        sendAll(bdata+data, socket.id);
+        sendAll(data, socket.id);
     });
     
     socket.on("disconnect", function(reason) {

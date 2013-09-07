@@ -1,9 +1,9 @@
 <html>
 <head>
-<script src="/socket.io/socket.io.js"></script>
+<script src="http://agile-eyrie-9352.herokuapp.com/socket.io/socket.io.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <script>
-	var socket = io.connect('http://agile-eyrie-9352.herokuapp.com:8080');
+	var socket = io.connect('http://agile-eyrie-9352.herokuapp.com');
 
 	// on connection to server, ask for user's name with an anonymous callback
 	socket.on('connect', function(){

@@ -5,12 +5,19 @@ var  express = require('express')
   , https = require('https')
 var port=process.env.PORT || 3000;
 var counter=0;
-var app1 = express();
+var app = express();
 
-var app=http.createServer(function(req,res){
-    res.write("server listening to port:"+port);
-    res.end();
-}).listen(port);
+app.configure(function(){
+app.use(express.bodyParser());
+app.use(app.router);
+
+});
+
+http.createServer(app).listen(app.get('port'), function() {
+    counter+=1;
+      console.log("Listening on " + app.get('port'));
+  });
+
 socket=require("socket.io");
 io=socket.listen(app);
 
@@ -20,7 +27,7 @@ io.configure(function () {
 });
 
 // routing
-app1.get('/', function (req, res) {
+app.get('/', function (req, res) {
   res.sendfile(__dirname + '/index.html');
 });
 

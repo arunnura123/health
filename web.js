@@ -3,10 +3,9 @@ var  express = require('express')
   , fs = require('fs')
   , http = require('http')
   , https = require('https')
-var port=process.env.PORT || 3000;
 var counter=0;
 var app = express();
-
+app.set('port', process.env.PORT || 8080);
 app.configure(function(){
 app.use(express.bodyParser());
 app.use(app.router);

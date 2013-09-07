@@ -1,58 +1,57 @@
+<!DOCTYPE html>
 <html>
 <head>
-<script src="http://agile-eyrie-9352.herokuapp.com/socket.io/socket.io.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-<script>
-	var socket = io.connect('http://agile-eyrie-9352.herokuapp.com');
+<title>Chat Room</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 
-	// on connection to server, ask for user's name with an anonymous callback
-	socket.on('connect', function(){
-		// call the server-side function 'adduser' and send one parameter (value of prompt)
-		socket.emit('adduser', prompt("What's your name?"));
-	});
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+var socket = io.connect('/');
+socket.on('from server', function (data) {
+    console.log(data);
+    if (data.message) {
+        //document.write(data.message);
+        $("#messages").append("<div>" + data.message + "</div>");
+    }
+    if (data.online) {
+        console.info("online:", data.online);
+        $("#onlinecount").html(data.online + " online");
+    }
+});
 
-	// listener, whenever the server emits 'updatechat', this updates the chat body
-	socket.on('updatechat', function (username, data) {
-		$('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
-	});
-
-	// listener, whenever the server emits 'updateusers', this updates the username list
-	socket.on('updateusers', function(data) {
-		$('#users').empty();
-		$.each(data, function(key, value) {
-			$('#users').append('<div>' + key + '</div>');
-		});
-	});
-
-	// on load of page
-	$(function(){
-		// when the client clicks SEND
-		$('#datasend').click( function() {
-			var message = $('#data').val();
-			$('#data').val('');
-			// tell server to execute 'sendchat' and send along one parameter
-			socket.emit('sendchat', message);
-		});
-
-		// when the client hits ENTER on their keyboard
-		$('#data').keypress(function(e) {
-			if(e.which == 13) {
-				$(this).blur();
-				$('#datasend').focus().click();
-			}
-		});
-	});
-
+$(function(){
+    $("#ui button").on("click", function(e){
+        var message = $("#textinput").val();
+        socket.emit('from client', { message: message });
+        $("#textinput").val("").focus();
+        $("#messages").append("<div class='ownmessage'>" + message + "</div>");
+        e.preventDefault();
+    });
+    $("#textinput").focus();
+});
 </script>
-<head>
+
+<style>
+    form {display:inline-block;}
+    body {font-family:sans-serif;}
+
+    #onlinecount {font-size:small; color:#999;}
+    #messages {color:#444; font-size:11px;}
+    #messages .ownmessage {font-weight:bold;}
+</style>
+
+</head>
+
 <body>
-<div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
-	<b>USERS</b>
-	<div id="users"></div>
-</div>
-<div style="float:left;width:300px;height:250px;overflow:scroll-y;padding:10px;">
-	<div id="conversation"></div>
-	<input id="data" style="width:200px;" />
-	<input type="button" id="datasend" value="send" />
-</div>
+    <div id="ui">
+        <form>
+            <input id="textinput" placeholder="chat box" />
+            <button>send</button>
+        </form>
+        <span id="onlinecount">1 online</span>
+    </div>
+    <div id="messages"></div>
+
 </body>
+</html>

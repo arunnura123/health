@@ -3,11 +3,21 @@ var  express = require('express')
   , fs = require('fs')
   , http = require('http')
   , https = require('https')
+var port=process.env.PORT || 3000;
 var counter=0;
 var app = express();
-var io = require('socket.io').listen(app);
 
-app.listen(8080);
+var app=http.createServer(function(req,res){
+    res.write("server listening to port:"+port);
+    res.end();
+}).listen(port);
+socket=require("socket.io");
+io=socket.listen(app);
+
+io.configure(function () { 
+  io.set("transports", ["xhr-polling"]); 
+  io.set("polling duration", 10); 
+});
 
 // routing
 app.get('/', function (req, res) {

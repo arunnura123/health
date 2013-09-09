@@ -104,7 +104,7 @@ var min='';
 }
 done();
 data+=bdata;
-response.send(data + result.rows.length );
+response.send(data + i );
 });
 });
 });

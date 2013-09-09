@@ -73,7 +73,7 @@ var min='';
       min = wStrin.slice(0,4);
       min+='9'; 
       client.query("SELECT DISTINCT * FROM health where pinno >= '" + mdat + "'  AND  pinno  <= '" + min + "'", function(err, result) {
-         if( !result.rows.length)
+         if( result.rows.length==0)
               {
                  mdat = wStrin.slice(0,1);
 	         mdat+='0';

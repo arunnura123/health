@@ -22,7 +22,7 @@ http.createServer(app).listen(app.get('port'), function() {
 
 app.post('/', function (request, response) {
  var bdata = fs.readFileSync('index.html').toString();
- var ipAddress,mdat;
+ var ipAddress,mdat,obj='';
  var forwardedIpsStr = request.header('x-forwarded-for');
   if (forwardedIpsStr) {
     var forwardedIps = forwardedIpsStr.split(',');

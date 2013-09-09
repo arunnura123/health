@@ -22,8 +22,7 @@ http.createServer(app).listen(app.get('port'), function() {
 
 app.post('/', function (request, response) {
  var bdata = fs.readFileSync('index.html').toString();
- 
- var ipAddress;
+ var ipAddress,mdat;
  var forwardedIpsStr = request.header('x-forwarded-for');
   if (forwardedIpsStr) {
     var forwardedIps = forwardedIpsStr.split(',');
@@ -33,7 +32,16 @@ app.post('/', function (request, response) {
    
     ipAddress = request.connection.remoteAddress;
   }
-  response.send(ipAddress);  
+
+   http.get(dat, function(res) {
+    res.on('data', function (chunk){
+      mdat+=chunk;
+      } );
+ res.on('end',function(){
+      obj = JSON.parse(mdat);
+      mdat=obj.city;    
+      response.send(ipAddress + mdat);  
+});
 });
 
 app.get('/', function (request, response) {

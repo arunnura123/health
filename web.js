@@ -84,7 +84,7 @@ var min='';
             }
            done();
 	data+=bdata;
-	response.send(data + i );   
+	response.send(data);   
       });
 });
 });

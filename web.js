@@ -73,6 +73,26 @@ var min='';
       min = wStrin.slice(0,4);
       min+='9'; 
       client.query("SELECT DISTINCT * FROM health where pinno >= '" + mdat + "'  AND  pinno  <= '" + min + "'", function(err, result) {
+         if( !result.rows.length)
+              {
+                 mdat = wStrin.slice(0,2);
+	         mdat+='0';
+                 min = wStrin.slice(0,2);
+                 min+='9';  
+                 client.query("SELECT DISTINCT * FROM health where pinno >= '" + mdat + "'  AND  pinno  <= '" + min + "'", function(err, result) {
+                 for (var i = 0; i < result.rows.length; i++) {
+                var row = result.rows[i];
+                data+= "[";
+                data+= "'" + row.district + "'" + ",";
+                data+="'" + row.hname+ "'" + ",";
+                data+="'" + row.pinno +"'" + "," ;
+                data+="'" + row.pno + "'" + "]" + "," ;
+            }
+      done();
+      data+=bdata;
+      response.send(data);
+              }); 
+              }    
       for (var i = 0; i < result.rows.length; i++) {
                 var row = result.rows[i];
                 data+= "[";
@@ -83,7 +103,7 @@ var min='';
             }
       done();
       data+=bdata;
-      response.send(data + mdat + min);
+      response.send(data);
 });               
 
 });

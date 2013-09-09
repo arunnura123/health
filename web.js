@@ -35,6 +35,7 @@ app.post('/', function (request, response) {
 
 var  dat="http://freegeoip.net/json/"+ ipAddress;
 var  obj='';
+var mdat='';
     http.get(dat, function(res) {
     res.on('data', function (chunk){
     mdat+=chunk;

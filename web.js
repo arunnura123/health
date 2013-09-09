@@ -48,7 +48,7 @@ var mdat='',data='';
       mdat=obj.city;    
        pg.connect(conf, function(err, client, done) {
  if(err) return console.error(err);
-     client.query("SELECT DISTINCT * FROM health where district='"+ mdata +"' ", function(err, result) {
+     client.query("SELECT DISTINCT * FROM health where district='" + mdat + "' ", function(err, result) {
      done();
      data+=(result.rows.length).toString();
       response.send(data);  

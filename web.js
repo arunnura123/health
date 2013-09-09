@@ -68,6 +68,7 @@ var min='';
 });
 }
 
+      var i=0;
       mdat = wStrin.slice(0,4);
       mdat+='0';
       min = wStrin.slice(0,4);
@@ -81,7 +82,8 @@ var min='';
                 data+="'" + row.pinno +"'" + "," ;
                 data+="'" + row.pno + "'" + "]" + "," ;
             }
-       
+      done();
+      });
       if(result.rows.length==0)
       {
             
@@ -103,7 +105,6 @@ var min='';
 done();
 data+=bdata;
 response.send(data + result.rows.length );
-});
 });
 });
 });

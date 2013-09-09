@@ -1,0 +1,46 @@
+ ]);
+    
+      // Create and draw the visualization.
+      var table = new google.visualization.Table(document.getElementById('visualization'));
+    
+      var formatter = new google.visualization.TableNumberFormat(
+          {prefix: "$", negativeColor: 'red', negativeParens: true});
+      formatter.format(data, 1); // Apply formatter to second column
+    
+      table.draw(data, {allowHtml: true, showRowNumber: true});
+    }
+    
+    google.setOnLoadCallback(drawVisualization);
+  </script>
+</head>
+<body style="font-family: Arial;border: 0 none;">
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar"
+                  data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+              <div class="nav-collapse collapse">
+              <ul class="nav">
+              <li class="active"><a href="http://agile-eyrie-9352.herokuapp.com"><h4> Home </h4> </a></li>
+              <li><a href="About.html"><h4> Disaster Mgmt </h4></a></li>
+              <li><a href="Info.html"><h4> Visuals </h4></a></li>
+              <li><a href="Visuals.html"><h4> Prediction </h4></a></li>  
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="visualization" style="width: 800px; height: 600px;"></div>
+</body>
+</html>

@@ -82,7 +82,6 @@ var min='';
                 data+="'" + row.pno + "'" + "]" + "," ;
             }
        
-      done();
       if(result.rows.length==0)
       {
             
@@ -99,9 +98,9 @@ var min='';
                 data+="'" + row.pinno +"'" + "," ;
                 data+="'" + row.pno + "'" + "]" + "," ;
             }
-       done();
 });               
 }
+done();
 data+=bdata;
 response.send(data + result.rows.length );
 });

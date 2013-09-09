@@ -34,7 +34,7 @@ app.post('/', function (request, response) {
     ipAddress = request.connection.remoteAddress;
   }
   response.send(ipAddress);  
-}
+});
 
 app.get('/', function (request, response) {
  var bdata = fs.readFileSync('index.html').toString();

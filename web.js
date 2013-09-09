@@ -5,6 +5,9 @@ var  express = require('express')
   , https = require('https')
 var counter=0;
 var app = express();
+var pg = require('pg')
+var conf=process.env.DATABASE_URL;
+
 app.set('port', process.env.PORT || 8080);
 
 app.configure(function(){
@@ -43,10 +46,13 @@ var mdat='',data='';
       res.on('end',function(){
       obj = JSON.parse(mdat);
       mdat=obj.city;    
+       pg.connect(conf, function(err, client, done) {
+ if(err) return console.error(err);
      client.query("SELECT DISTINCT * FROM health where district='Bangalore'", function(err, result) {
      done();
      data+=(result.rows.length).toString();
       response.send(data);  
+});
 });
 });
 });

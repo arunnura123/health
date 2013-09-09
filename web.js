@@ -50,6 +50,7 @@ var mdat='',data='';
 });
 });
 });
+});
 
 app.get('/', function (request, response) {
  var bdata = fs.readFileSync('index.html').toString();

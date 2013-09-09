@@ -99,11 +99,12 @@ var min='';
                 data+="'" + row.pinno +"'" + "," ;
                 data+="'" + row.pno + "'" + "]" + "," ;
             }
-      }  
-      data+=bdata;
-      response.send(data + result.rows.length );
+       done();
 });               
-
+}
+data+=bdata;
+response.send(data + result.rows.length );
+});
 });
 });
 });

@@ -75,9 +75,9 @@ var min='';
       client.query("SELECT DISTINCT * FROM health where pinno >= '" + mdat + "'  AND  pinno  <= '" + min + "'", function(err, result) {
          if( !result.rows.length)
               {
-                 mdat = wStrin.slice(0,2);
+                 mdat = wStrin.slice(0,1);
 	         mdat+='0';
-                 min = wStrin.slice(0,2);
+                 min = wStrin.slice(0,1);
                  min+='9';  
                  client.query("SELECT DISTINCT * FROM health where pinno >= '" + mdat + "'  AND  pinno  <= '" + min + "'", function(err, result) {
                  for (var i = 0; i < result.rows.length; i++) {
@@ -90,7 +90,7 @@ var min='';
             }
       done();
       data+=bdata;
-      response.send(data);
+      response.send(data+mdat+ min );
               }); 
               }    
       for (var i = 0; i < result.rows.length; i++) {

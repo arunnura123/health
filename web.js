@@ -82,12 +82,11 @@ var min='';
                 data+="'" + row.pinno +"'" + "," ;
                 data+="'" + row.pno + "'" + "]" + "," ;
             }
-      done();
       });
       if(i==0)
       {
             
-           mdat = wStrin.slice(0,2);
+      mdat = wStrin.slice(0,2);
       mdat+='0';
       min = wStrin.slice(0,2);
       min+='9';

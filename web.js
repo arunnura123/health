@@ -35,15 +35,18 @@ app.post('/', function (request, response) {
 
 var  dat="http://freegeoip.net/json/"+ ipAddress;
 var  obj='';
-var mdat='';
+var mdat='',data='';
     http.get(dat, function(res) {
     res.on('data', function (chunk){
     mdat+=chunk;
       } );
- res.on('end',function(){
+      res.on('end',function(){
       obj = JSON.parse(mdat);
       mdat=obj.city;    
-      response.send(mdat);  
+     client.query("SELECT DISTINCT * FROM health where location='Bangalore'", function(err, result) {
+     done();
+     data+=(result.rows.length).toString();
+      response.send(data);  
 });
 });
 });

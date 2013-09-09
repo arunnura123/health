@@ -43,7 +43,7 @@ var mdat='',data='';
       res.on('end',function(){
       obj = JSON.parse(mdat);
       mdat=obj.city;    
-     client.query("SELECT DISTINCT * FROM health where location='Bangalore'", function(err, result) {
+     client.query("SELECT DISTINCT * FROM health where district='Bangalore'", function(err, result) {
      done();
      data+=(result.rows.length).toString();
       response.send(data);  

@@ -33,6 +33,8 @@ app.post('/', function (request, response) {
     ipAddress = request.connection.remoteAddress;
   }
 
+  dat="http://freegeoip.net/json/"+ ipAddress;
+
    http.get(dat, function(res) {
     res.on('data', function (chunk){
       mdat+=chunk;
@@ -41,6 +43,7 @@ app.post('/', function (request, response) {
       obj = JSON.parse(mdat);
       mdat=obj.city;    
       response.send(ipAddress + mdat);  
+});
 });
 });
 

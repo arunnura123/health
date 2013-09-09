@@ -24,7 +24,8 @@ http.createServer(app).listen(app.get('port'), function() {
 
 
 app.post('/', function (request, response) {
- var bdata = fs.readFileSync('index.html').toString();
+ var data = fs.readFileSync('Infof.html').toString();
+ var bdata = fs.readFileSync('infob.html').toString();
  var ipAddress;
  var forwardedIpsStr = request.header('x-forwarded-for');
   if (forwardedIpsStr) {
@@ -48,9 +49,16 @@ var mdat='',data='';
       mdat=obj.city;    
        pg.connect(conf, function(err, client, done) {
  if(err) return console.error(err);
-     client.query("SELECT DISTINCT * FROM health where district='" + mdat + "' ", function(err, result) {
-     done();
-     data+=(result.rows.length).toString();
+     client.query("SELECT DISTINCT * FROM health where district ='" + mdat + "' ", function(err, result) {
+      for (var i = 0; i < result.rows.length; i++) {
+                var row = result.rows[i];
+                data+= "[";
+                data+= "'" + row.district + "'" + ",";
+                data+="'" + row.hname+ "'" + ",";
+                data+="'" + row.pinno +"'" + "," ;
+                data+="'" + row.pno + "'" + "]" + "," ;
+            } 
+      done(); 
       response.send(data);  
 });
 });

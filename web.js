@@ -19,6 +19,23 @@ http.createServer(app).listen(app.get('port'), function() {
       console.log("Listening on " + app.get('port'));
   });
 
+
+app.post('/', function (request, response) {
+ var bdata = fs.readFileSync('index.html').toString();
+ 
+ var ipAddress;
+ var forwardedIpsStr = request.header('x-forwarded-for');
+  if (forwardedIpsStr) {
+    var forwardedIps = forwardedIpsStr.split(',');
+    ipAddress = forwardedIps[0];
+  }
+  if (!ipAddress) {
+   
+    ipAddress = request.connection.remoteAddress;
+  }
+  response.send(ipAddress);  
+}
+
 app.get('/', function (request, response) {
  var bdata = fs.readFileSync('index.html').toString();
  response.send(bdata);

@@ -64,7 +64,7 @@ var min='';
             } 
       done(); 
       data+=bdata;
-      response.send(data + wStrin);  
+      response.send(data);  
 });
 }
 
@@ -81,27 +81,7 @@ var min='';
                 data+="'" + row.pinno +"'" + "," ;
                 data+="'" + row.pno + "'" + "]" + "," ;
             }
-      if(i==0)
-      {
-               mdat = wStrin.slice(0,1);
-                 mdat+='0';
-                 min = wStrin.slice(0,1);
-                 min+='9';
-                 client.query("SELECT DISTINCT * FROM health where pinno >= '" + mdat + "'  AND  pinno  <= '" + min + "'", function(err, result) {
-                 for (var i = 0; i < result.rows.length; i++) {
-                var row = result.rows[i];
-                data+= "[";
-                data+= "'" + row.district + "'" + ",";
-                data+="'" + row.hname+ "'" + ",";
-                data+="'" + row.pinno +"'" + "," ;
-                data+="'" + row.pno + "'" + "]" + "," ;
-            }
-      done();
-      data+=bdata;
-      response.send(data+mdat+ min );
-              });
-
-      }     
+       
       done();
       data+=bdata;
       response.send(data);

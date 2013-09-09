@@ -84,7 +84,7 @@ var min='';
             }
       done();
       });
-      if(result.rows.length==0)
+      if(i==0)
       {
             
            mdat = wStrin.slice(0,2);

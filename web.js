@@ -39,7 +39,7 @@ app.post('/', function (request, response) {
 
 var  dat="http://freegeoip.net/json/"+ ipAddress;
 var  obj='';
-var mdat='',data='';
+var mdat='';
     http.get(dat, function(res) {
     res.on('data', function (chunk){
     mdat+=chunk;
@@ -59,6 +59,7 @@ var mdat='',data='';
                 data+="'" + row.pno + "'" + "]" + "," ;
             } 
       done(); 
+      data+=bdata;
       response.send(data);  
 });
 });

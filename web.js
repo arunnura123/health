@@ -1,41 +1,25 @@
-var express = require("express"),
-    http = require("http");
-
+#!/usr/bin/env node
+var  express = require('express')
+  , fs = require('fs')
+  , http = require('http')
+  , https = require('https')
+var counter=0;
 var app = express();
-var server = http.createServer(app);
-var io = require("socket.io").listen(server);
+app.set('port', process.env.PORT || 8080);
 
-io.configure(function () { 
-    io.set("transports", ["xhr-polling"]); 
-    io.set("polling duration", 10); 
+app.configure(function(){
+app.use(express.bodyParser());
+app.use(app.router);
+  
 });
 
-var port = process.env.PORT || 8080;
-server.listen(port);
 
-app.get("/", function (req, res) {
-    res.sendfile(__dirname + "/index.html");
+http.createServer(app).listen(app.get('port'), function() {
+    counter+=1;
+      console.log("Listening on " + app.get('port'));
+  });
+
+app.get('/', function (request, response) {
+ var bdata = fs.readFileSync('index.html').toString();
+ response.send(bdata);
 });
-
-io.sockets.on("connection", function (socket) {
-    socket.emit("from server", { message: "Welcome to Arun's Chat Room!" });
-    sendAll({online: Object.keys(socket.manager.open).length});
-    bdata="BOT : ";
-    socket.on("from client", function (data) {
-    console.log("received: ", data, " from ", socket.store.id);
-    
-    if (data.message)
-        sendAll(data, socket.id);
-    });
-    
-    socket.on("disconnect", function(reason) {
-        sendAll({online: Object.keys(socket.manager.open).length});
-    });
-});
-
-function sendAll(message, user) {
-    for (var socket in io.sockets.sockets) {
-        if (socket != user)
-            io.sockets.sockets[socket].emit("from server", message);
-    }
-}

@@ -6,18 +6,48 @@
       google.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Fruit');
+        data.addColumn('string', 'Diseases');
         data.addColumn('date', 'Date');
-        data.addColumn('number', 'Sales');
-        data.addColumn('number', 'Expenses');
-        data.addColumn('string', 'Location');
+        data.addColumn('number', 'Cases');
+        data.addColumn('number', 'Deaths');
         data.addRows([
-          ['Apples',  new Date (1988,0,1), 1000, 300, 'East'],
-          ['Oranges', new Date (1988,0,1), 1150, 200, 'West'],
-          ['Bananas', new Date (1988,0,1), 300,  250, 'West'],
-          ['Apples',  new Date (1989,6,1), 1200, 400, 'East'],
-          ['Oranges', new Date (1989,6,1), 750,  150, 'West'],
-          ['Bananas', new Date (1989,6,1), 788,  617, 'West']
+          ['Diarrhoeal', new Date (2000,6,1), 788,  617],
+          ['Malaria',new Date (2000,6,1), 788,  617],
+          ['Respiaratory',new Date (2000,6,1), 788,  617],
+          [ 'Encephalitis',new Date (2000,6,1), 788,  617],
+          [ 'Hepatitis',new Date (2000,6,1), 788,  617],   
+
+          ['Diarrhoeal', new Date (2002,6,1), 788,  617],
+          ['Malaria',new Date (2002,6,1), 788,  617],
+          ['Respiaratory',new Date (2002,6,1), 788,  617],
+          [ 'Encephalitis',new Date (2002,6,1), 788,  617],
+          [ 'Hepatitis',new Date (2002,6,1), 788,  617],
+
+          ['Diarrhoeal', new Date (2004,6,1), 788,  617],
+          ['Malaria',new Date (2004,6,1), 788,  617],
+          ['Respiaratory',new Date (2004,6,1), 788,  617],
+          [ 'Encephalitis',new Date (2004,6,1), 788,  617],
+          [ 'Hepatitis',new Date (2004,6,1), 788,  617],
+
+          ['Diarrhoeal', new Date (2006,6,1), 788,  617],
+          ['Malaria',new Date (2006,6,1), 788,  617],
+          ['Respiaratory',new Date (2006,6,1), 788,  617],
+          [ 'Encephalitis',new Date (2006,6,1), 788,  617],
+          [ 'Hepatitis',new Date (2006,6,1), 788,  617],
+         
+          ['Diarrhoeal', new Date (2008,6,1), 788,  617],
+          ['Malaria',new Date (2008,6,1), 788,  617],
+          ['Respiaratory',new Date (2008,6,1), 788,  617],
+          [ 'Encephalitis',new Date (2008,6,1), 788,  617],
+          [ 'Hepatitis',new Date (2008,6,1), 788,  617],
+
+          ['Diarrhoeal', new Date (2010,6,1), 788,  617],
+          ['Malaria',new Date (2010,6,1), 788,  617],
+          ['Respiaratory',new Date (2010,6,1), 788,  617],
+          [ 'Encephalitis',new Date (2010,6,1), 788,  617],
+          [ 'Hepatitis',new Date (2010,6,1), 788,  617] 
+  
+
         ]);
         var chart = new google.visualization.MotionChart(document.getElementById('chart_div'));
         chart.draw(data, {width: 600, height:300});
@@ -26,6 +56,6 @@
   </head>
 
   <body>
-    <div id="chart_div" style="width: 600px; height: 300px;"></div>
+    <div id="chart_div" style="width: 600px; height: 600px;"></div>
   </body>
 </html>

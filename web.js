@@ -93,6 +93,11 @@ var min='';
 });
 });
 
+app.get('/pred.html', function (request, response) {
+ var bdata = fs.readFileSync('pred.html').toString();
+ response.send(bdata);
+});
+
 app.get('/About.html', function (request, response) {
  var bdata = fs.readFileSync('About.html').toString();
  response.send(bdata);

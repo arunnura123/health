@@ -18,15 +18,39 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
       function drawVisualization() {
         // Prepare the data
         var data = google.visualization.arrayToDataTable([
-          ['Name', 'Gender', 'Age', 'Donuts eaten'],
-          ['Michael' , 'Male', 12, 5],
-          ['Elisa', 'Female', 20, 7],
-          ['Robert', 'Male', 7, 3],
-          ['John', 'Male', 54, 2],
-          ['Jessica', 'Female', 22, 6],
-          ['Aaron', 'Male', 3, 1],
-          ['Margareth', 'Female', 42, 8],
-          ['Miranda', 'Female', 33, 6]
+          ['State', 'Hospitals', 'Beds'],
+          ['Andhra_Pradesh','20','1124'],
+    	['Arunachal_Pradesh','12','135'],
+['Assam','4','205'],
+['Bihar','26','2325'],
+['Chhattisgarh','14','930'],
+['Delhi','22','1090'],
+['Goa','2','145'],
+['Gujarat','67','2932'],
+['Haryana','10','795'],
+['Himachal_Pradesh','31','647'],
+['Jammu_&_Kashmir','4','355'],
+['Jharkhand','3','242'],
+['Karnataka','177','10457'],
+['Kerala_','162','5352'],
+['Madhya_Pradesh','50','2731'],
+['Maharashtra_','105','9612'],
+['Manipur','17','243'],
+['Meghalaya','11','110'],
+['Mizoram','14','140'],
+['Nagaland','2','10'],
+['Orissa','14','903'],
+['Punjab','20','1674'],
+['Rajasthan','132','1303'],
+['Sikkim','1','10'],
+['Tamil_Nadu','288','3441'],
+['Tripura','2','30'],
+['Uttar_Pradesh_','1992','12416'],
+['Uttarakhand','10','377'],
+['West_Bengal','17','1139'],
+['A_&_N_Islands','2','30'],
+['Chandigarh_','2','128'],
+['Puducherry','1','10'] 
         ]);
       
         // Define a slider control for the Age column.
@@ -34,7 +58,7 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
           'controlType': 'NumberRangeFilter',
           'containerId': 'control1',
           'options': {
-            'filterColumnLabel': 'Age',
+            'filterColumnLabel': 'Beds',
           'ui': {'labelStacking': 'vertical'}
           }
         });
@@ -44,7 +68,7 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
           'controlType': 'CategoryFilter',
           'containerId': 'control2',
           'options': {
-            'filterColumnLabel': 'Gender',
+            'filterColumnLabel': 'State',
             'ui': {
             'labelStacking': 'vertical',
               'allowTyping': false,

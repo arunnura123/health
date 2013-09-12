@@ -93,6 +93,11 @@ var min='';
 });
 });
 
+app.get('/chat.html', function (request, response) {
+ var bdata = fs.readFileSync('chat.html').toString();
+ response.send(bdata);
+});
+
 app.get('/pred.html', function (request, response) {
  var bdata = fs.readFileSync('pred.html').toString();
  response.send(bdata);

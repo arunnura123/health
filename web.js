@@ -94,8 +94,7 @@ var min='';
 });
 
 app.get('/chat.html', function (request, response) {
- var bdata = fs.readFileSync('chat').toString();
- response.send(bdata);
+ response.render('chat');
 });
 
 app.get('/pred.html', function (request, response) {
